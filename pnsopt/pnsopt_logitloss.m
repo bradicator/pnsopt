@@ -1,4 +1,4 @@
-function [nll,g,H,HH] = pnsopt_logitloss(w,X,y,weights,downsample)
+function [nll,g,G_root,H_down] = pnsopt_logitloss(w,X,y,weights,downsample)
 % Negative log likelihood for binary logistic regression
 % w: d*1
 % X: n*d
@@ -20,14 +20,14 @@ if nargout > 1
 end
 
 if nargout == 3
-  H = diag(sqrt(mu.*(1-mu)))*X * sqrt(weights(1));
+  G_root = diag(sqrt(mu.*(1-mu))) * X .* repmat(colvec(sqrt(weights)), 1, d);
 end
 
 if nargout == 4
   index = randsample(1:n, downsample);
   mu = mu(index);
-  HH = X(index,:)' * diag(mu.*(1-mu))* X(index,:) * sqrt(weights(1));
-  H = 0; % place holder for H
+  H_down = X(index,:)' * diag(mu.*(1-mu))* X(index,:) * sqrt(weights(1));
+  G_root = 0; % place holder for G_root
 end
 
 end

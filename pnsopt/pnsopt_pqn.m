@@ -109,7 +109,7 @@ function [ x, f_x, output ] = pnsopt_pqn( smoothF, nonsmoothF, x, options )
             [g_x, grad_g_x, G_root] = smoothF(x);
             S = normrnd(0, 1, [sketch_dim, size(G_root, 1)]);
             SG = S * G_root;
-            %H_x = G_root' * G_root; % for debug
+            %H_x = G_root' * G_root + delta*eye(x_dim); % for debug
             H_x = SG' * SG / sketch_dim + delta*eye(x_dim);
         case 'bfgs'
             if iter > 1

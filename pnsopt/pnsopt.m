@@ -39,9 +39,9 @@ function [ x, f, output ] = pnsopt( smoothF, nonsmoothF, x, options )
       'max_iter'       , 500        ,... % max number of iterations
       'subprob_solver' , 'tfocs'    ,... % solver for solving subproblems
       'tfocs_opts'     , tfocs_opts ,... % subproblem solver options
-      'ftol'           , 1e-9       ,... % stopping tolerance on relative change in the objective function 
+      'ftol'           , 1e-8       ,... % stopping tolerance on relative change in the objective function 
       'optim_tol'      , 1e-6       ,... % stopping tolerance on optimality condition
-      'xtol'           , 1e-9       ,... % stopping tolerance on solution
+      'xtol'           , 1e-8       ,... % stopping tolerance on solution
       'sketch_dim'     , 100        ,... % sketch dimension
       'theta'          , 0.85       ,... % stopping tolerance
       'beta'           , 0.1        ,... % hessian approx tolerance
