@@ -143,7 +143,7 @@ function [ x, f_x, output ] = pnsopt_pqn( smoothF, nonsmoothF, x, options )
   % ------------ Solve subproblem for a search direction ------------
     
 
-      quadF = @(z) pnsopt_quad( H_x, grad_g_x, g_x, z - x );
+      quadF = @(z) pnsopt_quad( SG, sketch_dim, grad_g_x, delta, g_x, z - x );
       
       xstart = x;
       tfocs_opts.stopFcn = @(f, x, x_old, L) pns_stop(x,x_old,...

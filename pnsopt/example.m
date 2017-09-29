@@ -1,7 +1,7 @@
 % generate some data with binary outcome
 rng(5);
 n = 100;
-p = 300;
+p = 500;
 s = 10;
 X = randn(n, p);
 beta0 = [ones(s, 1); zeros(p-s, 1)];
@@ -21,8 +21,9 @@ w0 = zeros(p,1);
 
 % fit lasso
 [ w1, f1, output1 ] = pnsopt(ols_obj, l1_pen, w0);
+tic;
 [ w2, f2, output2 ] = tfocs( ols_obj, [],l1_pen, w0);
-
+toc;
 
 % fit logistic regression
 [ w3, f3, output3 ] = pnsopt(logistic_obj, l1_pen, w0);
